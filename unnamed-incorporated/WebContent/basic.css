@@ -31,6 +31,13 @@ body {
     text-decoration: none;
     font-size: 20px;
 }
+.nav a:hover{
+    background-color: white;
+    color: black
+}
+.nav a.active{
+    background-color: darkgray;
+}
 
 .topSign {
     background: #020202;
@@ -47,4 +54,8 @@ body {
     float:right;
     text-decoration: none;
     
+}
+.topSign a:hover{
+    background-color: white;
+    color: black
 }

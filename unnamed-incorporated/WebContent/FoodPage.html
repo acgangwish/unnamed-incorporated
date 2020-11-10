@@ -2,16 +2,109 @@
 <html>
 
 <head>
-   <link rel="stylesheet" href="basic.css">
+    <link rel="stylesheet" href="basic.css">
+    <style>
+        .info {
+            width: 100%;
+            display: flex;
+
+        }
+
+        .info a {
+            font-family: Arial, Helvetica, sans-serif;
+            float: left;
+            height: auto;
+            flex: 1;
+
+        }
+
+        .info a.top {
+            height: 2px;
+            width: 100%;
+            color: lightgray;
+
+        }
+
+        .info a.desc {
+            background-color: rgb(200, 200, 200);
+            max-width: 20%;
+
+        }
+
+        .info a.menu {
+
+            background-color: rgb(150, 150, 150);
+            max-width: 50%;
+
+        }
+
+        .info a.rest {
+            background-color: rgb(200, 200, 200);
+            max-width: 30%;
+        }
+
+        .res {
+            padding: 10px 10px;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content
+        }
+
+        .res a {
+            background: #020202;
+            
+            color: white;
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    
-    <div class="center title">Restaurants</div>
+
+    <div class="center title">Restaurant Name</div>
     <div class="topSign">
-        
+
         <a href="/unnamed-incorporated/SignIn.html">Sign In</a>
     </div>
+    <div class="info">
+        <a class="desc">Hello and welcome to this Restaurant</a>
+        <a class="menu">
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+            Item - Some Description of what the item is - $Price<br>
+
+        </a>
+        <a class="rest">
+            Address: 1234 Some Blvd., Omaha, NE 68106<br>
+            Phone: 402-555-5555<br><br>
+            <b>Hours</b><br>
+            Sunday: Closed<br>
+            Monday: 11am - 10pm<br>
+            Tuesday: 11am - 10pm<br>
+            Wednesday: 11am - 10pm<br>
+            Thursday: 11am - 10pm<br>
+            Friday: 11am - 10pm<br>
+            Saturday: 11am - 10pm<br>
+
+        </a>
+    </div>
+    <div class="res center">
+        <a href="/unnamed-incorporated/reservation">Make a Reservation</a>
+    </div>
+
 
     <div class="nav">
 
@@ -19,7 +112,7 @@
 
         <a href="/unnamed-incorporated/InfoPage.html">Info</a>
 
-        <a href="/unnamed-incorporated/FoodPage.html">Restaurants</a>
+        <a class="active" href="/unnamed-incorporated/FoodPage.html">Restaurants</a>
 
     </div>
 
