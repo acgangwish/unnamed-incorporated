@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html style="width:99%; height:98%">
+    <body style="width:100%; height:100%">
+	    <div style="display:flex; flex-direction:column; height:100%">
+		    <div style="padding:15px; height:25px; font-weight:bold; font-size:25px">
+		     	Title
+		    </div>
+		    
+		    <div style="display:flex; flex-direction:row; justify-content:center; height:calc(100% - 55px); padding-top:calc(5%); padding-bottom:calc(5%)">
+		    	<div style="padding:calc(5%); border:1px solid black">
+		    		<h2>Sign In</h2>
+		    		<form action="SignIn" method="POST">
+		    			<input type="radio" id="userIn" name="loginType">
+		    			<label for="userIn">User</label>
+		    			<input type="radio" id="restaurantIn" name="loginType">
+		    			<label for="restaurantIn">Restaurant</label> <br> <br>
+		    			Username: <br>
+		    			<input type="text" name="usernameIn"> <br> <br>
+		    			Password: <br>
+		    			<input type="password" name="passwordIn"> <br> <br>
+		    			<input type="submit" value="Sign In">
+		    		</form>
+		    	</div>
+		    	
+		     	<div style="padding:calc(5%); border:1px solid black">
+		    		<h2>Register</h2>
+		    		<form action="Register" method="POST">
+		    			<input type="radio" id="userReg" name="registerType">
+		    			<label for="userReg">User</label>
+		    			<input type="radio" id="restaurantReg" name="registerType">
+		    			<label for="restaurantReg">Restaurant</label> <br> <br>
+		    			Username: <br>
+		    			<input type="text" name="usernameReg"> <br> <br>
+		    			Password: <br>
+		    			<input type="password" name="passwordReg"> <br> <br>
+		    			Confirm Password: <br>
+		    			<input type="password" name="passwordRegConfirm"> <br> <br>
+		    			<input type="submit" value="Register">
+		    		</form>
+		    	</div>
+		    </div>
+		    
+		    <div style="display:flex; flex-direction:row; border-top:1px solid black; height:55px">
+		    	<div style="float:left; padding:15px; width:calc(33%); text-align:center">
+		    		<a href="/unnamed-incorporated/HomePage.html">Home</a>
+		    	</div>
+		    	<div style="float:left; padding:15px; width:calc(33%); text-align:center">
+		    		<a href="/unnamed-incorporated/InfoPage.html">Info</a>
+		    	</div>
+		    	<div style="float:right; padding:15px; width:calc(33%); text-align:center">
+		    		<a href="/unnamed-incorporated/FoodPage.html">Restaurants</a>
+		    	</div>
+		    </div>
+		</div>
+    </body>
+</html>
