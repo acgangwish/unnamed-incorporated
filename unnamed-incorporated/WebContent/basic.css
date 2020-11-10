@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: gray;
+    background-color: rgb(225, 225, 225);
 }
 
 .center {
@@ -9,6 +9,7 @@ body {
     font-size: 50px;
 }
 .title {
+    margin-bottom: 2%;
     top: 10px;
     font-size: 50px;
     font-weight: bold;
