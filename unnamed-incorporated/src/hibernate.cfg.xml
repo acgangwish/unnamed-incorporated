@@ -16,6 +16,6 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- True you will see sql in console -->
 		<property name="show_sql">true</property>
-		<mapping class="datamodel.Item" />
+		<mapping class="datamodel.Resturant" />
 	</session-factory>
 </hibernate-configuration> 
