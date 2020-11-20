@@ -133,13 +133,16 @@
 
     <div class="res a center">
         <strong>Make a Reservation</strong>
-        <form action="MakeReservation">
+        <form name="reservationForm" method="post" action="MakeReservation">
+        	<input type="hidden" id="restID" name="restID" value="Test1">
+        	<input type="hidden" id="restID" name="restID" value="Test1">
         	<label for="date"> Date: </label>
         	<input type="date" id="date" name="date">
         	<label for="time"> Time: </label>
-        	<input type="number" id="time" name="time">
+        	<input type="time" id="time" name="time">
         	<label for="numPeople"> Number of People: </label>
         	<input type="number" id="numPeople" name="numPeople">
+        	<input type="submit" value="Submit Reservation">
         </form>
     </div>
 
