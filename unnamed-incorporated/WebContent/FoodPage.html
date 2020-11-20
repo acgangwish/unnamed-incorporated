@@ -9,6 +9,20 @@
         body{
             font-family: 'Montserrat', sans-serif;
         }
+        
+        input {
+        	display: block;
+        	margin: auto;
+        }
+        
+        label{
+        	font-family: 'Montserrat', sans-serif;
+        	font-size: 20px
+        }
+        
+        strong{
+        	font-size: 40px
+        }
         .info {
             width: 95%;
             display: flex;
@@ -117,8 +131,16 @@
         </a>
     </div>
 
-    <div class="res center">
-        <a href="/unnamed-incorporated/reservation">Make a Reservation</a>
+    <div class="res a center">
+        <strong>Make a Reservation</strong>
+        <form action="MakeReservation">
+        	<label for="date"> Date: </label>
+        	<input type="date" id="date" name="date">
+        	<label for="time"> Time: </label>
+        	<input type="number" id="time" name="time">
+        	<label for="numPeople"> Number of People: </label>
+        	<input type="number" id="numPeople" name="numPeople">
+        </form>
     </div>
 
 

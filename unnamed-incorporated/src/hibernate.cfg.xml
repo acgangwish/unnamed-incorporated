@@ -17,5 +17,6 @@
 		<!-- True you will see sql in console -->
 		<property name="show_sql">true</property>
 		<mapping class="datamodel.Resturant" />
+		<mapping class="datamodel.Reservation" />
 	</session-factory>
 </hibernate-configuration> 
