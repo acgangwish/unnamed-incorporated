@@ -99,7 +99,7 @@ public class ResturantPage extends HttpServlet {
 				+ "    </div>\r\n" + "\r\n" + "\r\n" + "    <div class=\"nav\">\r\n" + "\r\n"
 				+ "        <a href=\"/unnamed-incorporated/HomePage.html\">Home</a>\r\n" + "\r\n"
 				+ "        <a href=\"/unnamed-incorporated/InfoPage.html\">Info</a>\r\n" + "\r\n"
-				+ "        <a class=\"active\" href=\"/unnamed-incorporated/FoodPage.html\">Restaurants</a>\r\n"
+				+ "        <a class=\"active\" href=\"/unnamed-incorporated/ResturantPage\">Restaurants</a>\r\n"
 				+ "\r\n" + "    </div>\r\n" + "\r\n" + "</body>";
 	}
 
