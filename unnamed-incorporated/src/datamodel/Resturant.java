@@ -32,6 +32,10 @@ public class Resturant {
 	@Column(name="hours")
 	private String hours;
 	
+	public Resturant()
+	{
+		
+	}
 	
 	public Resturant(Integer rID, String rname, String desc, String addr, String city, String state, String hours) {
 		super();
