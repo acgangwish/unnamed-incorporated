@@ -19,8 +19,11 @@ private int id;
 @Column (name = "RESTAURANT_ID")
 private int restaurantId;
 
-@Column (name = "CUSTOMER_USERNAME")
-private String customerUsername;
+@Column (name = "CUSTOMER_ID")
+private String customerID;
+
+@Column (name = "RESERVATION_NAME")
+private String reservationName;
 
 @Column (name = "DATE")
 private String date;
@@ -31,14 +34,22 @@ private String time;
 @Column (name = "NUMPEOPLE")
 private int numPeople;
 
-public Reservation(int id, int restaurantId, String customerUsername, String date, String time, int numPeople) {
+public Reservation(int restaurantId, String customerID, String reservationName, String date, String time, int numPeople) {
 	super();
-	this.id = id;
 	this.restaurantId = restaurantId;
-	this.customerUsername = customerUsername;
+	this.customerID = customerID;
+	this.reservationName = reservationName;
 	this.date = date;
 	this.time = time;
 	this.numPeople = numPeople;
+}
+
+public String getReservationName() {
+	return reservationName;
+}
+
+public void setReservationName(String reservationName) {
+	this.reservationName = reservationName;
 }
 
 public int getId() {
@@ -57,12 +68,12 @@ public void setRestaurantId(int restaurantId) {
 	this.restaurantId = restaurantId;
 }
 
-public String getCustomerUsername() {
-	return customerUsername;
+public String getCustomerID() {
+	return customerID;
 }
 
-public void setCustomerUsername(String customerUsername) {
-	this.customerUsername = customerUsername;
+public void setCustomerID(String customerUsername) {
+	this.customerID = customerUsername;
 }
 
 public String getDate() {
