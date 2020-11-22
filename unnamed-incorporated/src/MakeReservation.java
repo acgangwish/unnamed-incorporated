@@ -27,7 +27,14 @@ public class MakeReservation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String restID = request.getParameter("restID");
+		String custUsrName = request.getParameter("custUsrName");
+		String personName = request.getParameter("personName");
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		String numPeople = request.getParameter("numPeople");
+		response.getWriter().append("Information passed was: " + restID + ", " + custUsrName + ", " + personName + ", "
+				+ date + ", " + time + ", " + numPeople + ".");
 	}
 
 	/**
