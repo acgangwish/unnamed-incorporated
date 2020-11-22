@@ -88,7 +88,7 @@ public class ResturantPage extends HttpServlet {
 				+ "    <div class=\"res a center\">\r\n" + "        <strong>Make a Reservation</strong>\r\n"
 				+ "        <form name=\"reservationForm\" method=\"post\" action=\"MakeReservation\">\r\n"
 				+ "        	<input type=\"hidden\" id=\"restID\" name=\"restID\" value=\"1\">\r\n"
-				+ "        	<input type=\"hidden\" id=\"custID\" name=\"custID\" value=\"1\">\r\n"
+				+ "        	<input type=\"hidden\" id=\"custID\" name=\"custID\" value=\"2\">\r\n"
 				+ "         <label for=\"date\"> Name on Reservation: </label>\r\n"
 				+ "         <input type=\"text\" id=\"personName\" name=\"personName\">\r\n"
 				+ "        	<label for=\"date\"> Date: </label>\r\n"
