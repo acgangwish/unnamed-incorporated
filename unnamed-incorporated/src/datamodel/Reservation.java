@@ -20,7 +20,7 @@ private int id;
 private int restaurantId;
 
 @Column (name = "CUSTOMER_ID")
-private String customerID;
+private int customerID;
 
 @Column (name = "RESERVATION_NAME")
 private String reservationName;
@@ -34,7 +34,7 @@ private String time;
 @Column (name = "NUMPEOPLE")
 private int numPeople;
 
-public Reservation(int restaurantId, String customerID, String reservationName, String date, String time, int numPeople) {
+public Reservation(int restaurantId, int customerID, String reservationName, String date, String time, int numPeople) {
 	super();
 	this.restaurantId = restaurantId;
 	this.customerID = customerID;
@@ -68,11 +68,11 @@ public void setRestaurantId(int restaurantId) {
 	this.restaurantId = restaurantId;
 }
 
-public String getCustomerID() {
+public int getCustomerID() {
 	return customerID;
 }
 
-public void setCustomerID(String customerUsername) {
+public void setCustomerID(int customerUsername) {
 	this.customerID = customerUsername;
 }
 

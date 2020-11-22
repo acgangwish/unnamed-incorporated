@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.utilDB;
+
 /**
  * Servlet implementation class MakeReservation
  */
@@ -27,14 +29,14 @@ public class MakeReservation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String restID = request.getParameter("restID");
-		String custUsrName = request.getParameter("custUsrName");
+		int restID = Integer.parseInt(request.getParameter("restID"));
+		int custID = Integer.parseInt(request.getParameter("custID"));
 		String personName = request.getParameter("personName");
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
-		String numPeople = request.getParameter("numPeople");
-		response.getWriter().append("Information passed was: " + restID + ", " + custUsrName + ", " + personName + ", "
-				+ date + ", " + time + ", " + numPeople + ".");
+		int numPeople = Integer.parseInt(request.getParameter("numPeople"));
+		
+		utilDB.createReservation(restID, custID, personName, date, time, numPeople);
 	}
 
 	/**
