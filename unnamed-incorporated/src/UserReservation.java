@@ -42,8 +42,9 @@ public class UserReservation extends HttpServlet {
 			cID = -1;
 		}
 		System.out.println(cID);
+		boolean isRest = (boolean) session.getAttribute("rest");
 		response.setContentType("text/html");
-		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(cID) + "</html>");
+		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(cID,isRest) + "</html>");
 	}
 
 	/**
@@ -96,7 +97,7 @@ public class UserReservation extends HttpServlet {
 				"    </style>\r\n" + 
 				"</head>";
 	}
-	private static String displayBody(Integer cID) {
+	private static String displayBody(Integer cID, boolean isRest) {
 		String whole ="";
 		String beginning;
 		String end;
@@ -120,7 +121,8 @@ public class UserReservation extends HttpServlet {
 				"        </li>\r\n" ;
 		whole += beginning;
 		if(cID != -1) {
-			List<Reservation> rs = utilDB.getReservationCust(cID);
+			
+			List<Reservation> rs = isRest?utilDB.getReservationRest(cID):utilDB.getReservationCust(cID);
 			for (Reservation r: rs)
 			{
 				Resturant a = utilDB.getResturant(r.getRestaurantId());
