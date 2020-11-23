@@ -34,8 +34,8 @@ public class SignIn extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("usernameIn");
 		String password = request.getParameter("passwordIn");
-	    String type = request.getParameter("loginType");
-		response.getWriter().append("values entered for login are: " + username + ", " + password + ", " + type + ".");
+	    String type = request.getParameter("type");
+		out.append("values entered for login are: " + username + ", " + password + ", " + type + ".");
 	}
 
 	/**
