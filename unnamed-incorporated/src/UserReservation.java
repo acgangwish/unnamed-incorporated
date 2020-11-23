@@ -1,12 +1,18 @@
 
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import datamodel.Reservation;
+import util.utilDB;
+import datamodel.Resturant;
 
 /**
  * Servlet implementation class UserReservation
@@ -41,7 +47,7 @@ public class UserReservation extends HttpServlet {
 		}
 		System.out.println(cID);
 		response.setContentType("text/html");
-		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody() + "</html>");
+		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(cID) + "</html>");
 	}
 
 	/**
@@ -93,13 +99,18 @@ public class UserReservation extends HttpServlet {
 				"    </style>\r\n" + 
 				"</head>";
 	}
-	private static String displayBody() {
-		return "<body>\r\n" + 
+	private static String displayBody(Integer cID) {
+		String whole ="";
+		String beginning;
+		String end;
+		
+		
+		beginning = "<body>\r\n" + 
 				"    <div class=\"center title\">Your Reservations</div>\r\n" + 
 				"\r\n" + 
 				"\r\n" + 
 				"    <ul>\r\n" + 
-				"        \r\n" + 
+				"        \r\n" +
 				"        <li>\r\n" + 
 				"            <div class=res>\r\n" + 
 				"                <a>Restaurant Name</a>\r\n" + 
@@ -109,8 +120,29 @@ public class UserReservation extends HttpServlet {
 				"                <a class=right>Date</a>\r\n" + 
 				"                \r\n" + 
 				"            </div>\r\n" + 
-				"        </li>\r\n" + 
-				"    </ul>\r\n" + 
+				"        </li>\r\n" ;
+		whole += beginning;
+		if(cID != -1) {
+			List<Reservation> rs = utilDB.getReservationCust(1);
+			for (Reservation r: rs)
+			{
+				Resturant a = utilDB.getResturant(r.getRestaurantId());
+				whole += "<li>\r\n" + 
+				"            <div class=res>\r\n" + 
+				"                <a>" + a.getRname() + "</a>\r\n" + 
+				"                <a>" + r.getReservationName() + "</a>\r\n" + 
+				"                <a>"+r.getNumPeople()+" People</a>\r\n" + 
+				"                <a class=right>"+r.getTime() +"</a>\r\n" + 
+				"                <a class=right>"+r.getDate() + "</a>\r\n" + 
+				"                \r\n" + 
+				"            </div>\r\n" + 
+				"        </li>\r\n" ;
+			}
+		}
+			
+		
+		
+				end = "</ul>\r\n" + 
 				"\r\n" + 
 				"\r\n" + 
 				"    <div class=\"nav\">\r\n" + 
@@ -125,6 +157,7 @@ public class UserReservation extends HttpServlet {
 				"\r\n" + 
 				"    </div>\r\n" + 
 				"</body>";
+		return whole + beginning;
 	}
 
 }
