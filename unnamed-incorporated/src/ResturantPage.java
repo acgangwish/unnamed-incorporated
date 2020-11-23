@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import datamodel.Resturant;
 import util.utilDB;
 
@@ -30,8 +31,20 @@ public class ResturantPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(false);
+		Integer cID;
+		if(session != null) {
+			if((boolean) session.getAttribute("rest")) {
+				cID = -1;
+			} else {
+				cID = (Integer) session.getAttribute("ID");
+			}
+		} else {
+			cID = -1;
+		}
+		System.out.println(cID);
 		response.setContentType("text/html");
-		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(1) + "</html>");
+		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(1, cID) + "</html>");
 	}
 
 	/**
@@ -44,7 +57,7 @@ public class ResturantPage extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private static String displayBody(Integer rID) {
+	private static String displayBody(Integer rID, Integer cID) {
 		Resturant r = null;
 		String rname;
 		String desc;
@@ -87,8 +100,8 @@ public class ResturantPage extends HttpServlet {
 				+ "</a>\r\n" + "    </div>\r\n" + "\r\n"
 				+ "    <div class=\"res a center\">\r\n" + "        <strong>Make a Reservation</strong>\r\n"
 				+ "        <form name=\"reservationForm\" method=\"post\" action=\"MakeReservation\">\r\n"
-				+ "        	<input type=\"hidden\" id=\"restID\" name=\"restID\" value=\"1\">\r\n"
-				+ "        	<input type=\"hidden\" id=\"custID\" name=\"custID\" value=\"2\">\r\n"
+				+ "        	<input type=\"hidden\" id=\"restID\" name=\"restID\" value=\"" + rID + "\">\r\n"
+				+ "        	<input type=\"hidden\" id=\"custID\" name=\"custID\" value=\"" + cID + "\">\r\n"
 				+ "         <label for=\"date\"> Name on Reservation: </label>\r\n"
 				+ "         <input type=\"text\" id=\"personName\" name=\"personName\">\r\n"
 				+ "        	<label for=\"date\"> Date: </label>\r\n"
@@ -101,7 +114,8 @@ public class ResturantPage extends HttpServlet {
 				+ "    </div>\r\n" + "\r\n" + "\r\n" + "    <div class=\"nav\">\r\n" + "\r\n"
 				+ "        <a href=\"/unnamed-incorporated/HomePage.html\">Home</a>\r\n" + "\r\n"
 				+ "        <a href=\"/unnamed-incorporated/InfoPage.html\">Info</a>\r\n" + "\r\n"
-				+ "        <a class=\"active\" href=\"/unnamed-incorporated/ResturantPage\">Restaurants</a>\r\n"
+				+ "        <a class=\"active\" href=\"/unnamed-incorporated/ResturantPage\">Restaurants</a>\r\n" + "\r\n"
+				+ "        <a href=\"/unnamed-incorporated/LogOut\">Log Out</a>\r\n"
 				+ "\r\n" + "    </div>\r\n" + "\r\n" + "</body>";
 	}
 

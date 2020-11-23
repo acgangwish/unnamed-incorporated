@@ -24,6 +24,10 @@ public class User {
 	@Column (name = "Restaurant")
 	private boolean restaurant; // false for user, true for restaurant
 	
+	public User() {
+		super();
+	}
+	
 	public User (String username, String password, boolean restaurant) {
 		super();
 		this.username = username;
@@ -61,6 +65,12 @@ public class User {
 
 	public void setRestaurant(boolean restaurant) {
 		this.restaurant = restaurant;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", restaurant=" + restaurant
+				+ "]";
 	}
 	
 	

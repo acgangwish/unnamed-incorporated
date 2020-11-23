@@ -6,21 +6,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import util.utilDB;
+import datamodel.User;
+import datamodel.Reservation;
+import datamodel.Resturant;
+import java.util.List;
+import java.util.Iterator;
 
 /**
- * Servlet implementation class MakeReservation
+ * Servlet implementation class AddUsersTest
  */
-@WebServlet("/MakeReservation")
-public class MakeReservation extends HttpServlet {
+@WebServlet("/AddUsersTest")
+public class AddUsersTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeReservation() {
+    public AddUsersTest() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +33,12 @@ public class MakeReservation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int restID = Integer.parseInt(request.getParameter("restID"));
-		int custID = Integer.parseInt(request.getParameter("custID"));
-		String personName = request.getParameter("personName");
-		String date = request.getParameter("date");
-		String time = request.getParameter("time");
-		int numPeople = Integer.parseInt(request.getParameter("numPeople"));
-		
-		if(custID == -1) {
-			request.getRequestDispatcher("SignIn.html").include(request, response);
-			response.getWriter().print("Error: Not logged in as a customer.");
-		} else {
-			utilDB.createReservation(restID, custID, personName, date, time, numPeople);
-			request.getRequestDispatcher("HomePage.html").include(request, response);
-			response.getWriter().print("Your Reservation has been Made Successfully!");
+		List<User> users = utilDB.getRestaurantUserList();
+		for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
+			User user  = (User) iterator.next();
+			response.getWriter().println(user.toString());
 		}
+		
 	}
 
 	/**

@@ -181,7 +181,7 @@ public class utilDB {
 	}
 	
 	//used for pulling user lists when validating sign in
-	public static List<User> getUserList(){
+	public static List<User> getRestaurantUserList(){
 		List<User> resultList = new ArrayList<User>();
 
 	      Session session = getSessionFactory().openSession();
@@ -189,10 +189,12 @@ public class utilDB {
 
 	      try {
 	         tx = session.beginTransaction();
-	         List<?> Users = session.createQuery("FROM Users").list();
+	         List<?> Users = session.createQuery("FROM User").list();
 	         for (Iterator<?> iterator = Users.iterator(); iterator.hasNext();) {
 	            User user = (User) iterator.next();
-	            resultList.add(user);
+	            if (user.isRestaurant() == true) {
+	            	resultList.add(user);
+	            }
 	         }
 	         tx.commit();
 	      } catch (HibernateException e) {
@@ -204,5 +206,32 @@ public class utilDB {
 	      }
 	      return resultList;
 	}
+	
+	//used for pulling user lists when validating sign in
+		public static List<User> getCustomerUserList(){
+			List<User> resultList = new ArrayList<User>();
+
+		      Session session = getSessionFactory().openSession();
+		      Transaction tx = null;  // each process needs transaction and commit the changes in DB.
+
+		      try {
+		         tx = session.beginTransaction();
+		         List<?> Users = session.createQuery("FROM User").list();
+		         for (Iterator<?> iterator = Users.iterator(); iterator.hasNext();) {
+		            User user = (User) iterator.next();
+		            if (user.isRestaurant() == false) {
+		            	resultList.add(user);
+		            }
+		         }
+		         tx.commit();
+		      } catch (HibernateException e) {
+		         if (tx != null)
+		            tx.rollback();
+		         e.printStackTrace();
+		      } finally {
+		         session.close();
+		      }
+		      return resultList;
+		}
 
 }

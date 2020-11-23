@@ -12,7 +12,7 @@ public class Resturant {
 	@Id // primary key
 	@Column(name = "rID") // specify the column name. Without it, it will use method name
 	private Integer rID;
-	
+
 	@Column(name="rname")
 	private String rname;
 	
@@ -118,7 +118,11 @@ public class Resturant {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return "Resturant [rID=" + rID + ", rname=" + rname + ", desc=" + desc + ", addr=" + addr + ", city=" + city
+				+ ", state=" + state + ", hours=" + hours + "]";
+	}
 	
 	
 
