@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name = "Resturant")
 public class Resturant {
 	@Id // primary key
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "rID") // specify the column name. Without it, it will use method name
 	private Integer rID;
 	

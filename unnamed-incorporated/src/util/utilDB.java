@@ -31,12 +31,12 @@ public class utilDB {
 		return sessionFactory;
 	}
 	
-	public static void createRes(String rname, String desc, String addr, String city, String state, String hours) {
+	public static void createRes(int rID, String rname, String desc, String addr, String city, String state, String hours) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			session.save(new Resturant(rname, desc, addr, city, state, hours));
+			session.save(new Resturant(rID, rname, desc, addr, city, state, hours));
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -137,31 +137,72 @@ public class utilDB {
 	}
 	
 	//for pulling multiple Reservations in the case of the Customer Information page
-		public static List<Reservation> getReservationCust(Integer cID) {
-			List<Reservation> resultList = new ArrayList<Reservation>();
-			Session session = getSessionFactory().openSession();
-			Transaction tx = null;
+	public static List<Reservation> getReservationCust(Integer cID) {
+		List<Reservation> resultList = new ArrayList<Reservation>();
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
 			
-			try {
-				tx = session.beginTransaction();
-				List<?> reservations = session.createQuery("FROM RESERVATIONS").list();
-				for (Iterator<?> iterator = reservations.iterator(); iterator.hasNext();) {
-					Reservation reservation = (Reservation) iterator.next();
-					if (reservation.getCustomerID() == cID) {
-						resultList.add(reservation);
-					}
+		try {
+			tx = session.beginTransaction();
+			List<?> reservations = session.createQuery("FROM RESERVATIONS").list();
+			for (Iterator<?> iterator = reservations.iterator(); iterator.hasNext();) {
+				Reservation reservation = (Reservation) iterator.next();
+				if (reservation.getCustomerID() == cID) {
+					resultList.add(reservation);
 				}
-				tx.commit();
 			}
-			catch (HibernateException e) {
-				if (tx != null)
-					tx.rollback();
-				e.printStackTrace();
-			} finally {
-				session.close();
-			}
-			
-			return resultList;
+			tx.commit();
 		}
+		catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return resultList;
+	}
+	
+	public static void createUser(String username, String password, boolean identityBit) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.save(new User(username, password, identityBit));
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
+	//used for pulling user lists when validating sign in
+	public static List<User> getUserList(){
+		List<User> resultList = new ArrayList<User>();
+
+	      Session session = getSessionFactory().openSession();
+	      Transaction tx = null;  // each process needs transaction and commit the changes in DB.
+
+	      try {
+	         tx = session.beginTransaction();
+	         List<?> Users = session.createQuery("FROM Users").list();
+	         for (Iterator<?> iterator = Users.iterator(); iterator.hasNext();) {
+	            User user = (User) iterator.next();
+	            resultList.add(user);
+	         }
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx != null)
+	            tx.rollback();
+	         e.printStackTrace();
+	      } finally {
+	         session.close();
+	      }
+	      return resultList;
+	}
 
 }

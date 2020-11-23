@@ -24,9 +24,8 @@ public class User {
 	@Column (name = "Restaurant")
 	private boolean restaurant; // false for user, true for restaurant
 	
-	public User (int id, String username, String password, boolean restaurant) {
+	public User (String username, String password, boolean restaurant) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.restaurant = restaurant;
