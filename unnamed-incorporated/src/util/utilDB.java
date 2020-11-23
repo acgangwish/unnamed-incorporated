@@ -116,7 +116,7 @@ public class utilDB {
 		
 		try {
 			tx = session.beginTransaction();
-			List<?> reservations = session.createQuery("FROM RESERVATIONS").list();
+			List<?> reservations = session.createQuery("FROM Reservation").list();
 			for (Iterator<?> iterator = reservations.iterator(); iterator.hasNext();) {
 				Reservation reservation = (Reservation) iterator.next();
 				if (reservation.getRestaurantId() == rID) {
@@ -144,7 +144,7 @@ public class utilDB {
 			
 		try {
 			tx = session.beginTransaction();
-			List<?> reservations = session.createQuery("FROM RESERVATIONS").list();
+			List<?> reservations = session.createQuery("FROM Reservation").list();
 			for (Iterator<?> iterator = reservations.iterator(); iterator.hasNext();) {
 				Reservation reservation = (Reservation) iterator.next();
 				if (reservation.getCustomerID() == cID) {

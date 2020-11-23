@@ -33,7 +33,6 @@ public class Resturant {
 	
 	public Resturant()
 	{
-		
 	}
 	
 	public Resturant(Integer rID, String rname, String desc, String addr, String city, String state, String hours) {

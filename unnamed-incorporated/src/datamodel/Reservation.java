@@ -34,6 +34,10 @@ private String time;
 @Column (name = "NUMPEOPLE")
 private int numPeople;
 
+public Reservation() {
+	super();
+}
+
 public Reservation(int restaurantId, int customerID, String reservationName, String date, String time, int numPeople) {
 	super();
 	this.restaurantId = restaurantId;

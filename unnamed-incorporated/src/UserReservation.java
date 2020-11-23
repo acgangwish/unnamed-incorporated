@@ -37,11 +37,7 @@ public class UserReservation extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Integer cID;
 		if(session != null) {
-			if((boolean) session.getAttribute("rest")) {
-				cID = -1;
-			} else {
-				cID = (Integer) session.getAttribute("ID");
-			}
+			cID = (Integer) session.getAttribute("ID");
 		} else {
 			cID = -1;
 		}
@@ -57,6 +53,7 @@ public class UserReservation extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
 	private static String displayStyle() {
 		return "<head>\r\n" + 
 				"    <link rel=\"stylesheet\" href=\"basic.css\">\r\n" + 
@@ -123,7 +120,7 @@ public class UserReservation extends HttpServlet {
 				"        </li>\r\n" ;
 		whole += beginning;
 		if(cID != -1) {
-			List<Reservation> rs = utilDB.getReservationCust(1);
+			List<Reservation> rs = utilDB.getReservationCust(cID);
 			for (Reservation r: rs)
 			{
 				Resturant a = utilDB.getResturant(r.getRestaurantId());
@@ -149,7 +146,7 @@ public class UserReservation extends HttpServlet {
 				"\r\n" + 
 				"        <a href=\"/unnamed-incorporated/HomePage.html\">Home</a>\r\n" + 
 				"\r\n" + 
-				"        <a href=\"/unnamed-incorporated/InfoPage.html\">Info</a>\r\n" + 
+				"        <a href=\"/unnamed-incorporated/UserReservation\">Info</a>\r\n" + 
 				"\r\n" + 
 				"        <a href=\"/unnamed-incorporated/ResturantPage\">Restaurants</a>\r\n" + 
 				"\r\n" + 
@@ -157,7 +154,7 @@ public class UserReservation extends HttpServlet {
 				"\r\n" + 
 				"    </div>\r\n" + 
 				"</body>";
-		return whole + beginning;
+		return whole + end;
 	}
 
 }
