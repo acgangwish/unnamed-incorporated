@@ -36,13 +36,15 @@ public class UserReservation extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		Integer cID;
+		boolean isRest = false;
 		if(session != null) {
 			cID = (Integer) session.getAttribute("ID");
+			isRest= (boolean) session.getAttribute("rest");
 		} else {
 			cID = -1;
 		}
 		System.out.println(cID);
-		boolean isRest = (boolean) session.getAttribute("rest");
+		
 		response.setContentType("text/html");
 		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(cID,isRest) + "</html>");
 	}
@@ -69,6 +71,7 @@ public class UserReservation extends HttpServlet {
 				"            list-style-type: none;\r\n" + 
 				"            width: 60%;\r\n" + 
 				"            margin: auto;\r\n" + 
+				"			 margin-bottom: 50px"+			
 				"            \r\n" + 
 				"        }\r\n" + 
 				"\r\n" + 
