@@ -78,7 +78,8 @@ public class utilDB {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Query q = session.createQuery("FROM Resturant R where R.rID = " + rID);
+			Query q = session.createQuery("FROM Resturant R where R.rID = :userID");
+			q.setParameter("userID", rID);
 			r = (Resturant) q.list().get(0);
 		}
 		catch (HibernateException e) {
