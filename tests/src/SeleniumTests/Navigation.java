@@ -17,7 +17,7 @@ public class Navigation {
 
   @Before
   public void setUp() throws Exception {
-	System.setProperty("webdriver.chrome.driver", "YOURPATH\\unnamed-incorporated\\tests\\lib\\chromedriver.exe");
+	System.setProperty("webdriver.chrome.driver", "lib\\chromedriver.exe");
 	driver = new ChromeDriver();
     baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -26,45 +26,45 @@ public class Navigation {
   @Test
   public void testNavigation() throws Exception {
     driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
-    Thread.sleep(2000);
+    Thread.sleep(1000);
     driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Home")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Restaurants")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Home")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Restaurants")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Restaurants")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Restaurants")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Home")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
     driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(2000);
+    Thread.sleep(200);
   }
 
   @After

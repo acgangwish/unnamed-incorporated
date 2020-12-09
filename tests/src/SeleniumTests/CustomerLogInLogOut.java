@@ -17,7 +17,7 @@ public class CustomerLogInLogOut {
 
   @Before
   public void setUp() throws Exception {
-	System.setProperty("webdriver.chrome.driver", "YOURPATH\\unnamed-incorporated\\tests\\lib\\chromedriver.exe");
+	System.setProperty("webdriver.chrome.driver", "lib\\chromedriver.exe");
 	driver = new ChromeDriver();
     baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
