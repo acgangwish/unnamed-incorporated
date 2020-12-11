@@ -26,22 +26,16 @@ public class RestaurantLogInLogOut {
   @Test
   public void testRestaurantLogInLogOut() throws Exception {
     driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
-    Thread.sleep(1000);
+    Thread.sleep(400);
     driver.findElement(By.linkText("Sign In")).click();
     Thread.sleep(400);
-    driver.findElement(By.id("restIn")).click();
+    driver.findElement(By.xpath("//input[@id=\"restIn\"]")).click();
     Thread.sleep(400);
-    driver.findElement(By.name("usernameIn")).click();
-    driver.findElement(By.name("usernameIn")).clear();
+    driver.findElement(By.xpath("//input[@name=\"usernameIn\"]")).sendKeys("Sals101");
     Thread.sleep(400);
-    driver.findElement(By.name("usernameIn")).sendKeys("Sals101");
+    driver.findElement(By.xpath("//input[@name=\"passwordIn\"]")).sendKeys("test1234");
     Thread.sleep(400);
-    driver.findElement(By.name("passwordIn")).click();
-    driver.findElement(By.name("passwordIn")).clear();
-    Thread.sleep(400);
-    driver.findElement(By.name("passwordIn")).sendKeys("test1234");
-    Thread.sleep(400);
-    driver.findElement(By.xpath("//input[@value='Sign In']")).click();
+    driver.findElement(By.xpath("//input[@value='Sign In']")).submit();
     Thread.sleep(400);
     driver.findElement(By.linkText("Info")).click();
     Thread.sleep(400);
