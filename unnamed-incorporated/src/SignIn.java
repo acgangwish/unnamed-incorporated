@@ -1,17 +1,13 @@
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Iterator;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import datamodel.User;
 import util.utilDB;
 
@@ -21,20 +17,12 @@ import util.utilDB;
 @WebServlet("/SignIn")
 public class SignIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public SignIn() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		List<User> users;
 		PrintWriter out = response.getWriter();
@@ -63,19 +51,38 @@ public class SignIn extends HttpServlet {
 	    }
 	    if (found) {
 	    	request.getRequestDispatcher("HomePage.html").include(request, response);
-	    	
 	    }else {
 	    	out.print("Error: Invalid username and/or password.");
 	    	request.getRequestDispatcher("SignIn.html").include(request, response);
 	    }
+	    
+	    //This is for the registering a new customer/restaurant
+	    String usernameReg = request.getParameter("usernameReg");
+	    String passwordReg = request.getParameter("passwordReg");
+	    String confirmPass = request.getParameter("passwordRegConfirm");
+	    String outputReg = request.getParameter("registerType");
+	    
+	    boolean passCorrect = false;
+	    
+	    if (passwordReg == confirmPass) {
+	    	passCorrect = true;
+	    } else {
+	    	out.print("Error: Passwords do not match.");
+	    	request.getRequestDispatcher("SignIn.html").include(request, response);
+	    }
+	    
+	    if (passCorrect && outputReg == "cust") {
+	    	utilDB.createUser(usernameReg, passwordReg, false);
+	    	request.getRequestDispatcher("SignIn.html").include(request, response);
+	    }
+	    
+	    if (passCorrect && outputReg == "rest") {
+	    	utilDB.createUser(usernameReg, passwordReg, true);
+	    	request.getRequestDispatcher("CreateRestaurantInformation.html").include(request, response);
+	    }
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
