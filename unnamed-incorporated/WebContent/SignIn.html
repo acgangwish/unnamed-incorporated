@@ -116,9 +116,9 @@
 		     	<div style="padding:calc(5%); border:1px solid black">
 		    		<h2>Register</h2>
 		    		<form action="CreateUserAccount" method="POST">
-		    			<input type="radio" id="userReg" name="registerType" checked>
+		    			<input type="radio" id="userReg" name="registerType" value="cust" checked>
 		    			<label for="userReg">Customer</label>
-		    			<input type="radio" id="restaurantReg" name="registerType">
+		    			<input type="radio" id="restaurantReg" name="registerType" value="rest">
 		    			<label for="restaurantReg">Restaurant</label> <br> <br>
 		    			Username: <br>
 		    			<input type="text" name="usernameReg"> <br> <br>
@@ -126,11 +126,10 @@
 		    			<input type="password" name="passwordReg"> <br> <br>
 		    			Confirm Password: <br>
 		    			<input type="password" name="passwordRegConfirm"> <br> <br>
-		    			<input type="submit" value="Register">
 		    		</form>
+		    		<input type="submit" value="Register">
 		    	</div>
 		    </div>
-		    
 		    <div class="nav">
 
         		<a href="/unnamed-incorporated/HomePage.html">Home</a>
