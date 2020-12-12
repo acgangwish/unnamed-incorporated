@@ -76,7 +76,7 @@ public class RestaurantMakeReservation {
     Thread.sleep(400);
     driver.findElement(By.xpath("//input[@value='Submit Reservation']")).submit();
     
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/SignIn.html", driver.getCurrentUrl());
+    Assert.assertEquals("Sign In", driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/h2")).getAttribute("innerHTML"));
   }
 
   @After
