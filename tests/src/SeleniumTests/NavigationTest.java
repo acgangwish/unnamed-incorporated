@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Navigation {
+public class NavigationTest {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;

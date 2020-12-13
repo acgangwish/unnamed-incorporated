@@ -2,6 +2,7 @@ package SeleniumTests;
 
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ThreadLocalRandom;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -9,14 +10,20 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class RestaurantLogInLogOut {
-  private static WebDriver driver;
-  private static String baseUrl;
+public class RestaurantMakeReservationTest {
+  private WebDriver driver;
+  private String baseUrl;
   private boolean acceptNextAlert = true;
-  private static StringBuffer verificationErrors = new StringBuffer();
-
-  @BeforeClass
-  public static void setUp() throws Exception {
+  private StringBuffer verificationErrors = new StringBuffer();
+  
+  private int Month;
+  private int Day;
+  private int Hours;
+  private int Minutes;
+  private int People;
+  
+  @Before
+  public void setUp() throws Exception {
 	System.setProperty("webdriver.chrome.driver", "lib\\chromedriver.exe");
 	driver = new ChromeDriver();
     baseUrl = "https://www.google.com/";
@@ -24,8 +31,28 @@ public class RestaurantLogInLogOut {
   }
 
   @Test
-  public void testRestaurantLogIn() throws Exception {
-    driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
+  public void testRestaurantMakeReservation() throws Exception {
+	Month = ThreadLocalRandom.current().nextInt(1, 13);
+    switch(Month) {
+    	case(2):
+    		Day = ThreadLocalRandom.current().nextInt(1, 30);
+    	break;
+    	case(4):
+    	case(6):
+    	case(9):
+    	case(11):
+    		Day = ThreadLocalRandom.current().nextInt(1, 31);
+    	break;
+    	default:
+    		Day = ThreadLocalRandom.current().nextInt(1, 32);
+    }
+    Hours = ThreadLocalRandom.current().nextInt(9,23);
+    Minutes = ThreadLocalRandom.current().nextInt(0, 60);
+    People = ThreadLocalRandom.current().nextInt(1, 11);
+	
+    
+    
+	driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
     Thread.sleep(400);
     driver.findElement(By.linkText("Sign In")).click();
     Thread.sleep(400);
@@ -37,25 +64,23 @@ public class RestaurantLogInLogOut {
     Thread.sleep(400);
     driver.findElement(By.xpath("//input[@value='Sign In']")).submit();
     Thread.sleep(400);
-    driver.findElement(By.linkText("Info")).click();
+    driver.findElement(By.linkText("Restaurants")).click();
     Thread.sleep(400);
-    String userInfo = driver.findElement(By.xpath("((//*[@class=\"res\"])[2]/a)[2]")).getAttribute("innerHTML");
+    driver.findElement(By.xpath("//input[@id=\"personName\"]")).sendKeys("Sals");
+    Thread.sleep(400);
+    driver.findElement(By.xpath("//input[@id=\"date\"]")).sendKeys(String.format("%02d-%02d-2020", Month, Day));
+    Thread.sleep(400);
+    driver.findElement(By.xpath("//input[@id=\"time\"]")).sendKeys(String.format("%02d:%02d", Hours, Minutes));
+    Thread.sleep(400);
+    driver.findElement(By.xpath("//input[@id=\"numPeople\"]")).sendKeys(String.valueOf(People));
+    Thread.sleep(400);
+    driver.findElement(By.xpath("//input[@value='Submit Reservation']")).submit();
     
-    Assert.assertEquals(userInfo, "Michael Menard");
-  }
-  
-  @Test
-  public void testRestaurantLogOut() throws Exception {
-	  driver.findElement(By.linkText("Log Out")).click();
-	  Thread.sleep(400);
-	  driver.findElement(By.linkText("Info")).click();
-	  int infoNum = driver.findElements(By.xpath("//*[@class=\"res\"]")).size();
-	  
-	  Assert.assertEquals(infoNum, 1);
+    Assert.assertEquals("Sign In", driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/h2")).getAttribute("innerHTML"));
   }
 
-  @AfterClass
-  public static void tearDown() throws Exception {
+  @After
+  public void tearDown() throws Exception {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {

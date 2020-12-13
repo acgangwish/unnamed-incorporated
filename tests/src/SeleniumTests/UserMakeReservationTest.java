@@ -10,7 +10,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class RestaurantMakeReservation {
+public class UserMakeReservationTest {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -31,7 +31,7 @@ public class RestaurantMakeReservation {
   }
 
   @Test
-  public void testRestaurantMakeReservation() throws Exception {
+  public void testUserMakeReservation() throws Exception {
 	Month = ThreadLocalRandom.current().nextInt(1, 13);
     switch(Month) {
     	case(2):
@@ -56,9 +56,9 @@ public class RestaurantMakeReservation {
     Thread.sleep(400);
     driver.findElement(By.linkText("Sign In")).click();
     Thread.sleep(400);
-    driver.findElement(By.xpath("//input[@id=\"restIn\"]")).click();
+    driver.findElement(By.xpath("//input[@id=\"custIn\"]")).click();
     Thread.sleep(400);
-    driver.findElement(By.xpath("//input[@name=\"usernameIn\"]")).sendKeys("Sals101");
+    driver.findElement(By.xpath("//input[@name=\"usernameIn\"]")).sendKeys("John Doe");
     Thread.sleep(400);
     driver.findElement(By.xpath("//input[@name=\"passwordIn\"]")).sendKeys("test1234");
     Thread.sleep(400);
@@ -66,7 +66,7 @@ public class RestaurantMakeReservation {
     Thread.sleep(400);
     driver.findElement(By.linkText("Restaurants")).click();
     Thread.sleep(400);
-    driver.findElement(By.xpath("//input[@id=\"personName\"]")).sendKeys("Sals");
+    driver.findElement(By.xpath("//input[@id=\"personName\"]")).sendKeys("John Doe");
     Thread.sleep(400);
     driver.findElement(By.xpath("//input[@id=\"date\"]")).sendKeys(String.format("%02d-%02d-2020", Month, Day));
     Thread.sleep(400);
@@ -75,8 +75,20 @@ public class RestaurantMakeReservation {
     driver.findElement(By.xpath("//input[@id=\"numPeople\"]")).sendKeys(String.valueOf(People));
     Thread.sleep(400);
     driver.findElement(By.xpath("//input[@value='Submit Reservation']")).submit();
+    Thread.sleep(400);
+    driver.findElement(By.linkText("Info")).click();
     
-    Assert.assertEquals("Sign In", driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/h2")).getAttribute("innerHTML"));
+    String expectedDate = String.format("2020-%02d-%02d", Month, Day);
+    String expectedTime = String.format("%02d:%02d", Hours, Minutes);
+    String expectedPeople = String.valueOf(People) + " People";
+    
+    String peopleInfo = driver.findElement(By.xpath("((//*[@class=\"res\"])[last()]/a)[3]")).getAttribute("innerHTML");
+    String timeInfo = driver.findElement(By.xpath("((//*[@class=\"res\"])[last()]/a)[4]")).getAttribute("innerHTML");
+    String dateInfo = driver.findElement(By.xpath("((//*[@class=\"res\"])[last()]/a)[5]")).getAttribute("innerHTML");
+    
+    Assert.assertEquals(peopleInfo, expectedPeople);
+    Assert.assertEquals(dateInfo, expectedDate);
+    Assert.assertEquals(timeInfo, expectedTime);
   }
 
   @After
