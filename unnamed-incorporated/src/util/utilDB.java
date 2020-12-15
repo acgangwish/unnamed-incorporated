@@ -74,13 +74,20 @@ public class utilDB {
 	
 	public static Resturant getResturant(Integer rID) {
 		Resturant r = null;
+		List<Resturant> resturants;
 		Session session = getSessionFactory().openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Query q = session.createQuery("FROM Resturant R where R.rID = :userID");
-			q.setParameter("userID", rID);
-			r = (Resturant) q.list().get(0);
+			Query q = session.createQuery("FROM Resturant");			
+			resturants = (List<Resturant>)q.list();
+			for(Resturant rest : resturants) {
+				if (rest.getrID() == rID) {
+					r = rest;
+					break;
+				}
+			}
+			
 		}
 		catch (HibernateException e) {
 			if (tx != null)
@@ -223,6 +230,33 @@ public class utilDB {
 		            if (user.isRestaurant() == false) {
 		            	resultList.add(user);
 		            }
+		         }
+		         tx.commit();
+		      } catch (HibernateException e) {
+		         if (tx != null)
+		            tx.rollback();
+		         e.printStackTrace();
+		      } finally {
+		         session.close();
+		      }
+		      return resultList;
+		}
+		
+		public static List<Resturant> getSearchResults(String search){
+			List<Resturant> resultList = new ArrayList<Resturant>();
+
+		    Session session = getSessionFactory().openSession();
+		    Transaction tx = null;
+			try {
+		         tx = session.beginTransaction();
+		         List<?> rests = session.createQuery("FROM Resturant").list();
+		         for (Iterator<?> iterator = rests.iterator(); iterator.hasNext();) {
+		            Resturant rest = (Resturant) iterator.next();
+		            if(rest.getDesc().toLowerCase().contains(search.toLowerCase()) 
+		            		|| rest.getRname().toLowerCase().contains(search.toLowerCase())) {
+		            	resultList.add(rest);
+		            }
+	
 		         }
 		         tx.commit();
 		      } catch (HibernateException e) {

@@ -43,8 +43,9 @@ public class ResturantPage extends HttpServlet {
 			cID = -1;
 		}
 		System.out.println(cID);
+		int rID = Integer.parseInt(request.getParameter("rest"));
 		response.setContentType("text/html");
-		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(1, cID) + "</html>");
+		response.getWriter().append("<!DOCTYPE html><html>" + displayStyle() + displayBody(rID, cID) + "</html>");
 	}
 
 	/**
