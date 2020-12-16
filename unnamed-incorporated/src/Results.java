@@ -123,9 +123,9 @@ public class Results extends HttpServlet {
 		List<Resturant> resturants = utilDB.getSearchResults(search);
 		String list= "";
 		for(Resturant r: resturants) {
-			list += "<form id=\"select\" action=\"ResturantPage\" method=\"POST\">\r\n" + 
+			list += "<form id=\"select" + r.getrID() + "\" action=\"ResturantPage\" method=\"POST\">\r\n" + 
 					"            <input type=\"hidden\" id=rest name=rest value="+ r.getrID()  +">\r\n" + 
-					"            <li onclick=\"select.submit();\">\r\n" + 
+					"            <li onclick=\"select" + r.getrID() + ".submit();\">\r\n" + 
 					"                <div href class=res>\r\n" + 
 					"                    <a>"+ r.getRname() + "</a>\r\n" + 
 					"                    <a class=right>"+String.format("%s %s, %s", r.getAddr(),r.getCity(),r.getState())+"</a>\r\n" + 
