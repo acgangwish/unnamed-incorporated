@@ -46,6 +46,8 @@ public class RestaurantLogInLogOutTest {
   
   @Test
   public void testRestaurantLogOut() throws Exception {
+	  driver.findElement(By.linkText("Home")).click();
+	  Thread.sleep(400);
 	  driver.findElement(By.linkText("Log Out")).click();
 	  Thread.sleep(400);
 	  driver.findElement(By.linkText("Info")).click();
