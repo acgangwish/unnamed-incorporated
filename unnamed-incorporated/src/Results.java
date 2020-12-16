@@ -124,7 +124,7 @@ public class Results extends HttpServlet {
 		String list= "";
 		for(Resturant r: resturants) {
 			list += "<form id=\"select" + r.getrID() + "\" action=\"ResturantPage\" method=\"POST\">\r\n" + 
-					"            <input type=\"hidden\" id=rest name=rest value="+ r.getrID()  +">\r\n" + 
+					"            <input type=\"hidden\" id=\"rest\" name=\"rest\" value="+ r.getrID()  +">\r\n" + 
 					"            <li onclick=\"select" + r.getrID() + ".submit();\">\r\n" + 
 					"                <div href class=res>\r\n" + 
 					"                    <a>"+ r.getRname() + "</a>\r\n" + 

@@ -64,7 +64,7 @@ public class ResturantPage extends HttpServlet {
 		String desc;
 		String addr;
 		String hours;
-		if ((r = utilDB.getResturant(1)) != null) {
+		if ((r = utilDB.getResturant(rID)) != null) {
 			rname = r.getRname();
 			desc = r.getDesc();
 			addr = r.getAddr() + " " + r.getCity() + " " + r.getState();
