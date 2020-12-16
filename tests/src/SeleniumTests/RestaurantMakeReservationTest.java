@@ -66,7 +66,7 @@ public class RestaurantMakeReservationTest {
     Thread.sleep(400);
     driver.findElement(By.xpath("//input[@value='Search']")).click();
     Thread.sleep(400);
-    driver.findElement(By.xpath("//input[@id='1']//..//li")).click();
+    driver.findElement(By.xpath("//form[@id='select1']/li")).click();
     Thread.sleep(400);
     driver.findElement(By.xpath("//input[@id=\"personName\"]")).sendKeys("Sals");
     Thread.sleep(400);
