@@ -15,6 +15,8 @@ import util.utilDB;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ReservationTests {
 
+	private static int resId;
+	
 	@Test
 	@Order(1)
 	public void testGetReservationCust() {
@@ -52,13 +54,13 @@ public class ReservationTests {
 		assertEquals("6:00 PM", r.getTime());
 		assertEquals(10, r.getNumPeople());
 		r = rl.get(2);
-		assertEquals(3, r.getId());
+		assertEquals(11, r.getId());
 		assertEquals(2, r.getCustomerID());
-		assertEquals("Thing", r.getReservationName());
+		assertEquals("John Doe", r.getReservationName());
 		assertEquals(1, r.getRestaurantId());
-		assertEquals("02/24/1999", r.getDate());
-		assertEquals("8:00 PM", r.getTime());
-		assertEquals(3, r.getNumPeople());
+		assertEquals("2020-12-11", r.getDate());
+		assertEquals("09:57", r.getTime());
+		assertEquals(2, r.getNumPeople());
 	}
 	
 	@Test
@@ -81,5 +83,14 @@ public class ReservationTests {
 		assertEquals("2020-12-14", r.getDate());
 		assertEquals("20:20", r.getTime());
 		assertEquals(20, r.getNumPeople());
+		resId = r.getId();
+	}
+	
+	@Test
+	@Order(4)
+	public void testDeleteReservation() {
+		int size = utilDB.getReservationCust(99).size();
+		utilDB.deleteReservation(resId);
+		assertEquals(size - 1, utilDB.getReservationCust(99).size());
 	}
 }
