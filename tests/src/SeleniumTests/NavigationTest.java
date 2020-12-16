@@ -1,22 +1,28 @@
 package SeleniumTests;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NavigationTest {
-  private WebDriver driver;
-  private String baseUrl;
+  private static WebDriver driver;
+  private static String baseUrl;
   private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
+  private static StringBuffer verificationErrors = new StringBuffer();
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeAll
+  public static void setUp() throws Exception {
 	System.setProperty("webdriver.chrome.driver", "lib\\chromedriver.exe");
 	driver = new ChromeDriver();
 	baseUrl = "https://www.google.com/";
@@ -24,70 +30,97 @@ public class NavigationTest {
   }
 
   @Test
-  public void testNavigation() throws Exception {
+  @Order(1)
+  public void testHomeNavigation() throws Exception {
     driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
     Thread.sleep(400);
     driver.findElement(By.linkText("Sign In")).click();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/SignIn.html", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Home")).click();
+    driver.navigate().back();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html", driver.getCurrentUrl());
+    Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
     driver.findElement(By.linkText("Info")).click();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/UserReservation", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Restaurants")).click();
+    Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
+    driver.navigate().back();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/ResturantPage", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/UserReservation", driver.getCurrentUrl());
+    Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
     driver.findElement(By.linkText("Log Out")).click();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/LogOut", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Info")).click();
+    Assert.assertTrue(driver.getCurrentUrl().endsWith("LogOut"));
+    driver.navigate().back();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/UserReservation", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Home")).click();
+    Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
+    driver.findElement(By.xpath("//input[@value='Search']")).click();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Restaurants")).click();
+    Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
+    driver.navigate().back();
     Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/ResturantPage", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/SignIn.html", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Restaurants")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/ResturantPage", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/LogOut", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Restaurants")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/ResturantPage", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Home")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/LogOut", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/SignIn.html", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/LogOut", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/SignIn.html", driver.getCurrentUrl());
-    driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(400);
-    Assert.assertEquals("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/UserReservation", driver.getCurrentUrl());
+    Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
   }
   
-  @After
-  public void tearDown() throws Exception {
+  @Test
+  @Order(2)
+  public void testInfoNavigation() throws Exception {
+	driver.findElement(By.linkText("Info")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
+	driver.findElement(By.linkText("Home")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
+  }
+  
+  @Test
+  @Order(3)
+  public void testSignInNavigation() throws Exception {
+	driver.findElement(By.linkText("Sign In")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("SignIn.html"));
+	driver.findElement(By.linkText("Info")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
+	driver.navigate().back();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("SignIn.html"));
+	driver.findElement(By.linkText("Home")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
+  }
+  
+  @Test
+  @Order(4)
+  public void testSearchNavigation() throws Exception {
+	driver.findElement(By.xpath("//input[@value='Search']")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
+	driver.findElement(By.linkText("Sign In")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("SignIn.html"));
+	driver.navigate().back();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
+	driver.findElement(By.linkText("Home")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
+	driver.navigate().back();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
+	driver.findElement(By.linkText("Info")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
+	driver.navigate().back();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
+	driver.findElement(By.linkText("Log Out")).click();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("LogOut"));
+	driver.navigate().back();
+	Thread.sleep(400);
+	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
+  }
+  
+  @AfterAll
+  public static void tearDown() throws Exception {
 	driver.quit();
 	String verificationErrorString = verificationErrors.toString();
 	if (!"".equals(verificationErrorString)) {
