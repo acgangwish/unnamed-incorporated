@@ -28,29 +28,11 @@ public class CreateRestaurantInformation extends HttpServlet {
 		String city = request.getParameter("resCity");
 		String state = request.getParameter("resState");
 		String hours = request.getParameter("resHours");
-		String usernameReg = request.getParameter("usernameReg");
-	    String passwordReg = request.getParameter("passwordReg");
-	    List<User> users = utilDB.getRestaurantUserList();
-	    PrintWriter out = response.getWriter();
-	    boolean found = false;
-	    int ID = 0;
-	    
-		for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
-	    	User user = (User) iterator.next();
-	    	if (user.getUsername().equals(usernameReg) && user.getPassword().equals(passwordReg)) {
-	    		user.getId();
-	    		found = true;
-	    		break;
-	    	}
-	    }
+	    CreateUserAccount cua = new CreateUserAccount();
+	    int ID = cua.getID();
 		
-		if (found) {
-			utilDB.createRes(ID, name, desc, addr, city, state, hours);
-			request.getRequestDispatcher("HomePage.html").include(request, response);
-		} else {
-			out.print("Error: Invalid information.");
-	    	request.getRequestDispatcher("SignIn.html").include(request, response);
-		}
+		utilDB.createRes(ID, name, desc, addr, city, state, hours);
+		request.getRequestDispatcher("SignIn.html").include(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
