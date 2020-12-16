@@ -137,6 +137,11 @@ public class UserReservation extends HttpServlet {
 				"                <a class=right>"+r.getTime() +"</a>\r\n" + 
 				"                <a class=right>"+r.getDate() + "</a>\r\n" + 
 				"                \r\n" + 
+				"                </div>\r\n"+
+				"                <div>\r\n" +
+				"<form name=\"DeleteButton\" method=\"post\" action=\"DeleteReservation\">\r\n" + 
+				"        	<input type=\"hidden\" id=\"ReservationID\" name=\"reservationID\" value=\"" + r.getId() + "\">\r\n" + 
+				"        	<input type=\"submit\" value=\"Delete\">\r\n" + "        </form>\r\n" +
 				"            </div>\r\n" + 
 				"        </li>\r\n" ;
 			}
@@ -152,10 +157,6 @@ public class UserReservation extends HttpServlet {
 				"        <a href=\"/unnamed-incorporated/HomePage.html\">Home</a>\r\n" + 
 				"\r\n" + 
 				"        <a href=\"/unnamed-incorporated/UserReservation\">Info</a>\r\n" + 
-				"\r\n" + 
-				"        <a href=\"/unnamed-incorporated/ResturantPage\">Restaurants</a>\r\n" + 
-				"\r\n" + 
-				"        <a style=\"float: right;\" href=\"/unnamed-incorporated/LogOut\">Log Out</a>\r\n" + 
 				"\r\n" + 
 				"    </div>\r\n" + 
 				"</body>";

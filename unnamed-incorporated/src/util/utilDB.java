@@ -116,6 +116,24 @@ public class utilDB {
 		}
 	}
 	
+	public static void deleteReservation(int id) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Query q = session.createQuery("DELETE FROM Reservation WHERE ID = :id");
+			q.setParameter("id", id);
+			int result = q.executeUpdate();
+			System.out.println("Rows affected: " + result);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
 	//for pulling multiple Reservations in the case of the Restaurant Information page
 	public static List<Reservation> getReservationRest(Integer rID) {
 		List<Reservation> resultList = new ArrayList<Reservation>();
