@@ -56,6 +56,30 @@ public class SignIn extends HttpServlet {
 	    	request.getRequestDispatcher("SignIn.html").include(request, response);
 	    }
 	    
+	    //This is for the registering a new customer/restaurant
+	    String usernameReg = request.getParameter("usernameReg");
+	    String passwordReg = request.getParameter("passwordReg");
+	    String confirmPass = request.getParameter("passwordRegConfirm");
+	    String outputReg = request.getParameter("registerType");
+
+	    boolean passCorrect = false;
+
+	    if (passwordReg == confirmPass) {
+	    	passCorrect = true;
+	    } else {
+	    	out.print("Error: Passwords do not match.");
+	    	request.getRequestDispatcher("SignIn.html").include(request, response);
+	    }
+
+	    if (passCorrect && outputReg == "cust") {
+	    	utilDB.createUser(usernameReg, passwordReg, false);
+	    	request.getRequestDispatcher("SignIn.html").include(request, response);
+	    }
+
+	    if (passCorrect && outputReg == "rest") {
+	    	utilDB.createUser(usernameReg, passwordReg, true);
+	    	request.getRequestDispatcher("CreateRestaurantInformation.html").include(request, response);
+	    }
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
