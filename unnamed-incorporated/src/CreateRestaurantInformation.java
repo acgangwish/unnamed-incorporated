@@ -28,8 +28,7 @@ public class CreateRestaurantInformation extends HttpServlet {
 		String city = request.getParameter("resCity");
 		String state = request.getParameter("resState");
 		String hours = request.getParameter("resHours");
-	    CreateUserAccount cua = new CreateUserAccount();
-	    int ID = cua.getID();
+	    int ID = Integer.parseInt(request.getParameter("ID"));
 		
 		utilDB.createRes(ID, name, desc, addr, city, state, hours);
 		request.getRequestDispatcher("SignIn.html").include(request, response);

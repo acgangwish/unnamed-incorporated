@@ -40,37 +40,82 @@ public class CreateUserAccount extends HttpServlet {
 	    String passwordReg = request.getParameter("passwordReg");
 	    String confirmPass = request.getParameter("passwordRegConfirm");
 	    String outputReg = request.getParameter("registerType");
-	    List<User> users = utilDB.getRestaurantUserList();
+	    List<User> custUsers = utilDB.getCustomerUserList();
+	    List<User> restUsers = utilDB.getRestaurantUserList();
 	    
 	    boolean passCorrect = false;
+	    boolean err = false;
 	    
 	    if (passwordReg.equals(confirmPass)) {
 	    	passCorrect = true;
 	    } else {
 	    	out.print("Error: Passwords do not match.");
 	    	request.getRequestDispatcher("SignIn.html").include(request, response);
+	    	err = true;
 	    }
 	    
-	    if (passCorrect && outputReg.equals("cust")) {
-	    	utilDB.createUser(usernameReg, passwordReg, false);
-	    	request.getRequestDispatcher("SignIn.html").include(request, response);
+	    if (passCorrect && outputReg.equals("cust") && err != true) {
+	    	for (User u: custUsers) {
+	    		if (usernameReg.equals(u.getUsername())) {
+	    			out.print("That username is already taken. Please select a different Username.");
+	    			request.getRequestDispatcher("SignIn.html").include(request, response);
+	    			err = true;
+		    		break;
+	    		}
+	    	}
+	    	if (err != true) {
+	    		utilDB.createUser(usernameReg, passwordReg, false);
+	    		request.getRequestDispatcher("SignIn.html").include(request, response);
+	    	}
 	    }
 	    
-	    if (passCorrect && outputReg.equals("rest")) {
+	    boolean dup = false;
+	    if (err != true) {
+	    	for (User u: restUsers) {
+	    		if (usernameReg.equals(u.getUsername())) {
+	    			out.print("That username is already taken. Please select a different Username.");
+	    			request.getRequestDispatcher("SignIn.html").include(request, response);
+	    			err = true;
+		    		break;
+	    		}
+	    	}
+	    }
+	    
+	    if (passCorrect && outputReg.equals("rest") && err != true ) {
 	    	utilDB.createUser(usernameReg, passwordReg, true);
-	    	
-	    	for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
+	    	restUsers = utilDB.getRestaurantUserList();
+	    	for (Iterator<?> iterator = restUsers.iterator(); iterator.hasNext();) {
 		    	User user = (User) iterator.next();
-		    	if (user.getUsername().equals(usernameReg) && user.getPassword().equals(passwordReg)) {
+		    	if (user.getUsername().equals(usernameReg)) {
 		    		id = user.getId();
 		    		break;
 		    	}
 		    }
 	    	
-	    	request.getRequestDispatcher("CreateRestaurantInformation.html").include(request, response);
-	    } else {
-	    	out.print("Unknown Error.");
-	    	request.getRequestDispatcher("SignIn.html").include(request, response);
+	    	response.getWriter().print(
+	    			"<!DOCTYPE html>\n" + 
+	    			"<html>\n" + 
+	    			"<head>\n" + 
+	    			"<body>\n" + 
+	    			"<form action=\"CreateRestaurantInformation\" method=\"POST\">\r\n" + 
+	    		    "   <input type=\"hidden\" id=\"restID\" name=\"ID\" value=\"" + id + "\">\r\n" +
+	    			"	Restaurant Name: <br>\r\n" + 
+	    			"	<input type=\"text\" name=\"resName\"> <br> <br>\r\n" + 
+	    			"	Description: <br>\r\n" + 
+	    			"	<input type=\"text\" name=\"resDesc\"> <br> <br>\r\n" + 
+	    			"	Address: <br>\r\n" + 
+	    			"	<input type=\"text\" name=\"resAddr\"> <br> <br>\r\n" + 
+	    			"	City: <br>\r\n" + 
+	    			"	<input type=\"text\" name=\"resCity\"> <br> <br>\r\n" + 
+	    			"	State: <br>\r\n" + 
+	    			"	<input type=\"text\" name=\"resState\"> <br> <br>\r\n" + 
+	    			"	Hours: <br>\r\n" + 
+	    			"	<input type=\"text\" name=\"resHours\"> <br> <br>\r\n" + 
+	    			"	<input type=\"submit\" value=\"Register Information\">\r\n" + 
+	    			"</form>\r\n" + 
+	    			"</body>\r\n" + 
+	    			"</head>\r\n" + 
+	    			"</html>");
 	    }
 	}
 
