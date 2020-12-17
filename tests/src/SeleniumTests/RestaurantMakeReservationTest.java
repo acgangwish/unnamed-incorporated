@@ -53,29 +53,29 @@ public class RestaurantMakeReservationTest {
     
     
 	driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@id=\"restIn\"]")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@name=\"usernameIn\"]")).sendKeys("Sals101");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@name=\"passwordIn\"]")).sendKeys("test1234");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@value='Sign In']")).submit();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@value='Search']")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//form[@id='select1']/li")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@id=\"personName\"]")).sendKeys("Sals");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@id=\"date\"]")).sendKeys(String.format("%02d-%02d-2020", Month, Day));
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@id=\"time\"]")).sendKeys(String.format("%02d:%02d", Hours, Minutes));
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@id=\"numPeople\"]")).sendKeys(String.valueOf(People));
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@value='Submit Reservation']")).submit();
     
     Assert.assertEquals("Sign In", driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/h2")).getAttribute("innerHTML"));

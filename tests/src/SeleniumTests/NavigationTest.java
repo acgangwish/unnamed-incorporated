@@ -33,29 +33,29 @@ public class NavigationTest {
   @Order(1)
   public void testHomeNavigation() throws Exception {
     driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.navigate().back();
-    Thread.sleep(400);
+    Thread.sleep(600);
     Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
     driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
     driver.navigate().back();
-    Thread.sleep(400);
+    Thread.sleep(600);
     Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
     driver.findElement(By.linkText("Log Out")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     Assert.assertTrue(driver.getCurrentUrl().endsWith("LogOut"));
     driver.navigate().back();
-    Thread.sleep(400);
+    Thread.sleep(600);
     Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
     driver.findElement(By.xpath("//input[@value='Search']")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
     driver.navigate().back();
-    Thread.sleep(400);
+    Thread.sleep(600);
     Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
   }
   
@@ -63,10 +63,10 @@ public class NavigationTest {
   @Order(2)
   public void testInfoNavigation() throws Exception {
 	driver.findElement(By.linkText("Info")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
 	driver.findElement(By.linkText("Home")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
   }
   
@@ -74,16 +74,16 @@ public class NavigationTest {
   @Order(3)
   public void testSignInNavigation() throws Exception {
 	driver.findElement(By.linkText("Sign In")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("SignIn.html"));
 	driver.findElement(By.linkText("Info")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
 	driver.navigate().back();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("SignIn.html"));
 	driver.findElement(By.linkText("Home")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
   }
   
@@ -91,31 +91,31 @@ public class NavigationTest {
   @Order(4)
   public void testSearchNavigation() throws Exception {
 	driver.findElement(By.xpath("//input[@value='Search']")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
 	driver.findElement(By.linkText("Sign In")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("SignIn.html"));
 	driver.navigate().back();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
 	driver.findElement(By.linkText("Home")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("HomePage.html"));
 	driver.navigate().back();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
 	driver.findElement(By.linkText("Info")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("UserReservation"));
 	driver.navigate().back();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
 	driver.findElement(By.linkText("Log Out")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("LogOut"));
 	driver.navigate().back();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	Assert.assertTrue(driver.getCurrentUrl().endsWith("Results"));
   }
   

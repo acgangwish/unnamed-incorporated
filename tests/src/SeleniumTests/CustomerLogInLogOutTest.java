@@ -26,19 +26,19 @@ public class CustomerLogInLogOutTest {
   @Test
   public void testCustomerLogIn() throws Exception {
     driver.get("http://ec2-3-133-90-197.us-east-2.compute.amazonaws.com:8080/unnamed-incorporated/HomePage.html");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.linkText("Sign In")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@id=\"custIn\"]")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@name=\"usernameIn\"]")).sendKeys("John Doe");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@name=\"passwordIn\"]")).sendKeys("test1234");
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.xpath("//input[@value='Sign In']")).submit();
-    Thread.sleep(400);
+    Thread.sleep(600);
     driver.findElement(By.linkText("Info")).click();
-    Thread.sleep(400);
+    Thread.sleep(600);
     String userInfo = driver.findElement(By.xpath("(//*[@class=\"res\"])[2]/a")).getAttribute("innerHTML");
     
     Assert.assertEquals(userInfo, "Sal's Pizzaria");
@@ -47,9 +47,9 @@ public class CustomerLogInLogOutTest {
   @Test
   public void testCustomerLogOut() throws Exception {
 	driver.findElement(By.linkText("Home")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	driver.findElement(By.linkText("Log Out")).click();
-	Thread.sleep(400);
+	Thread.sleep(600);
 	driver.findElement(By.linkText("Info")).click();
 	int infoNum = driver.findElements(By.xpath("//*[@class=\"res\"]")).size();
 	  
