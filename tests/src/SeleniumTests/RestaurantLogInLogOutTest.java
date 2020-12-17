@@ -51,6 +51,7 @@ public class RestaurantLogInLogOutTest {
 	  driver.findElement(By.linkText("Log Out")).click();
 	  Thread.sleep(600);
 	  driver.findElement(By.linkText("Info")).click();
+	  Thread.sleep(600);
 	  int infoNum = driver.findElements(By.xpath("//*[@class=\"res\"]")).size();
 	  
 	  Assert.assertEquals(infoNum, 1);

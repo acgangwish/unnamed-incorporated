@@ -79,6 +79,7 @@ public class UserMakeReservationTest {
     driver.findElement(By.xpath("//input[@value='Submit Reservation']")).submit();
     Thread.sleep(600);
     driver.findElement(By.linkText("Info")).click();
+    Thread.sleep(600);
     
     String expectedDate = String.format("2020-%02d-%02d", Month, Day);
     String expectedTime = String.format("%02d:%02d", Hours, Minutes);

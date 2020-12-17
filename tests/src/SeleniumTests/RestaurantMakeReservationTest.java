@@ -77,6 +77,7 @@ public class RestaurantMakeReservationTest {
     driver.findElement(By.xpath("//input[@id=\"numPeople\"]")).sendKeys(String.valueOf(People));
     Thread.sleep(600);
     driver.findElement(By.xpath("//input[@value='Submit Reservation']")).submit();
+    Thread.sleep(600);
     
     Assert.assertEquals("Sign In", driver.findElement(By.xpath("/html/body/div/div[2]/div[1]/h2")).getAttribute("innerHTML"));
   }
